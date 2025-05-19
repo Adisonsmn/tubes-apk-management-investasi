@@ -910,9 +910,14 @@ func InputInvestasi() (string, string, float64, float64, float64, float64) {
 
 func Goodbye() {
 	fmt.Println("=========================================================")
-	fmt.Println("Terima kasih telah menggunakan")
-	fmt.Println("Aplikasi Manajemen Investasi Sederhana")
-	fmt.Println("Semoga portofolio investasimu terus berkembang!")
-	fmt.Println("Sampai jumpa ")
+	fmt.Println("|                                                       |")
+	fmt.Println("|       Terima kasih telah menggunakan aplikasi         |")
+	fmt.Println("|         Manajemen Investasi Sederhana!                |")
+	fmt.Println("|                                                       |")
+	fmt.Println("|   Semoga portofolio investasimu terus berkembang!     |")
+	fmt.Println("|                                                       |")
+	fmt.Println("|                    Sampai jumpa!                      |")
+	fmt.Println("|                                                       |")
 	fmt.Println("=========================================================")
 }
+
