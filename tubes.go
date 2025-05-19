@@ -16,8 +16,8 @@ type Users struct {
 }
 
 type AsetInvetasi struct {
-	NamaAset, JenisAset     string
-	JumlahDanaInvestasi, NilaiAset,HargaBeli,HargaJual,Keuntungan,PersentaseKeuntungan float64
+	NamaAset, JenisAset                                                                    string
+	JumlahDanaInvestasi, NilaiAset, HargaBeli, HargaJual, Keuntungan, PersentaseKeuntungan float64
 }
 
 // GLOBAL VARIABLES
@@ -29,8 +29,6 @@ var AllInvestasi DataInvestasi
 
 var idxUser = 2
 var idxInvestasi = 6
-
-
 
 func main() {
 	// memasukan dataDummy untuk user default ke array
@@ -50,7 +48,7 @@ func main() {
 			isLoggIn = InputLogin()
 
 		} else if accountOption == 2 {
-			RegisterUser(&AllUsers,idxUser)
+			RegisterUser(&AllUsers, idxUser)
 			var input string
 			fmt.Println("Ingin Login? (Y/N):")
 			fmt.Scan(&input)
@@ -68,24 +66,24 @@ func main() {
 		for isLoggIn && inDashboard {
 			var dashboradOption int
 			var namaAset, jenisAset string
-			var jumlahDana, nilaiAset,hargaBeli,hargaJual float64
+			var jumlahDana, nilaiAset, hargaBeli, hargaJual float64
 
 			DashboardOption()
 			fmt.Scan(&dashboradOption)
 			ClearScreen()
-			
+
 			switch dashboradOption {
 			case 1:
-    			namaAset, jenisAset, jumlahDana, nilaiAset,hargaBeli,hargaJual = InputInvestasi()
-    			CreateDataInvestasi(namaAset, jenisAset, jumlahDana,nilaiAset,hargaBeli,hargaJual)
+				namaAset, jenisAset, jumlahDana, nilaiAset, hargaBeli, hargaJual = InputInvestasi()
+				CreateDataInvestasi(namaAset, jenisAset, jumlahDana, nilaiAset, hargaBeli, hargaJual)
 			case 2:
-    			fmt.Print("Masukkan Nama Aset yang akan di ubah: ")
-    			fmt.Scan(&namaAset)
-    			ModifyDataInvestasi(namaAset)
+				fmt.Print("Masukkan Nama Aset yang akan di ubah: ")
+				fmt.Scan(&namaAset)
+				ModifyDataInvestasi(namaAset)
 			case 3:
-    			fmt.Print("Masukkan Nama Aset yang akan di hapus: ")
-    			fmt.Scan(&namaAset)
-    			HapusDataInvestasi(namaAset)
+				fmt.Print("Masukkan Nama Aset yang akan di hapus: ")
+				fmt.Scan(&namaAset)
+				HapusDataInvestasi(namaAset)
 			case 4:
 				fmt.Println("---------------------------------------------------------")
 				fmt.Println("            CARI DATA INVESTASI BERDASARKAN             ")
@@ -97,21 +95,21 @@ func main() {
 				var input int
 				fmt.Print("Masukan Piihan: ")
 				fmt.Scan(&input)
-				switch input{
+				switch input {
 				case 1:
 					var namaAset string
 					fmt.Print("Masukkan Nama Aset: ")
 					fmt.Scan(&namaAset)
-					found :=FindDataByName(namaAset)	
-					if  found == -1{
+					found := FindDataByName(namaAset)
+					if found == -1 {
 						fmt.Println("\nData Tidak Ditemukan,Pastikan Nama Aset Yang di Masukan Benar")
 					}
 				case 2:
 					var jenisAset string
 					fmt.Print("Masukkan Jenis Aset: ")
 					fmt.Scan(&jenisAset)
-					found :=FindDataByJenis(jenisAset)
-					if found == -1{
+					found := FindDataByJenis(jenisAset)
+					if found == -1 {
 						fmt.Print("\nData Tidak Ditemukan,Pastikan Jenis Aset Yang di Masukan Benar")
 					}
 				case 3:
@@ -119,8 +117,8 @@ func main() {
 					fmt.Print("Masukkan Jumlah Dana: ")
 					fmt.Scan(&jumlahDana)
 					InsertionSortAscendingJumlahDana(&AllInvestasi)
-					found :=FindByJumlahDana(jumlahDana)
-					if found == -1{
+					found := FindByJumlahDana(jumlahDana)
+					if found == -1 {
 						fmt.Print("\nData Tidak Ditemukan,Pastikan Jumlah Dana Yang di Masukan Benar")
 					}
 				}
@@ -145,8 +143,8 @@ func main() {
 				fmt.Print("Masukkan pilihan (1-5): ")
 				fmt.Scan(&inputBerdasarkan)
 
-				if inputJenisSort == 1{
-					switch inputBerdasarkan{
+				if inputJenisSort == 1 {
+					switch inputBerdasarkan {
 					case 1:
 						fmt.Print("\nData Sebelum di Urutkan\n")
 						CetakDataInvestai(&AllInvestasi)
@@ -172,7 +170,7 @@ func main() {
 						InsertionSortAscendingKeuntungan(&AllInvestasi)
 						fmt.Print("\nData Setelah di Urutkan\n")
 						CetakDataInvestai(&AllInvestasi)
-					case 5: 
+					case 5:
 						InitPersentaseDanKeuntungan(&AllInvestasi)
 						fmt.Print("\nData Sebelum di Urutkan\n")
 						CetakDataInvestai(&AllInvestasi)
@@ -180,8 +178,8 @@ func main() {
 						fmt.Print("\nData Setelah di Urutkan\n")
 						CetakDataInvestai(&AllInvestasi)
 					}
-				} else if inputJenisSort == 2{
-					switch inputBerdasarkan{
+				} else if inputJenisSort == 2 {
+					switch inputBerdasarkan {
 					case 1:
 						fmt.Print("\nData Sebelum di Urutkan\n")
 						CetakDataInvestai(&AllInvestasi)
@@ -216,24 +214,22 @@ func main() {
 						CetakDataInvestai(&AllInvestasi)
 					}
 				}
-				
+
 			case 6:
-    			// TampilkanLaporanInvestasi()
+				// TampilkanLaporanInvestasi()
 			case 7:
-    			fmt.Println("Anda telah Logout.")
-    			inDashboard = false
+				Goodbye()
+				inDashboard = false
 			case 8:
-    			fmt.Println("Terima kasih telah menggunakan aplikasi.")
-    			aplikasiAktif = false
-    			inDashboard = false
+				fmt.Println("Terima kasih telah menggunakan aplikasi.")
+				aplikasiAktif = false
+				inDashboard = false
 			default:
-    			fmt.Println("Pilihan tidak valid! Silahkan pilih 1-8.")
+				fmt.Println("Pilihan tidak valid! Silahkan pilih 1-8.")
 			}
 		}
 	}
 }
-
-
 
 func InitDummyUsers(TUsers *DataUsers) {
 	// IS. Terdefinisi array TUsers dalam keadaan kosong tanpa data user apapun.
@@ -251,7 +247,7 @@ func InitDummyUsers(TUsers *DataUsers) {
 	}
 }
 
-func InitDummyDataInvestasi(TAset  *DataInvestasi) {
+func InitDummyDataInvestasi(TAset *DataInvestasi) {
 	// IS. Terdefinisi array TAset dalam keadaan kosong tanpa data aset investasi apapun.
 	// FS. Mengisi array TAset dengan beberapa data dummy aset investasi yang sudah ditentukan
 	//     pada indeks awal array untuk tujuan pengujian atau inisialisasi awal program.
@@ -308,7 +304,6 @@ func InitDummyDataInvestasi(TAset  *DataInvestasi) {
 		HargaBeli:           1000000,
 		HargaJual:           1070000,
 	}
-
 
 }
 
@@ -443,12 +438,12 @@ func InputLogin() bool {
 }
 
 // INVESTMENT RELATED FUNCTIONS
-func CreateDataInvestasi(namaAset, jenisAset string, nilaiAset, jumlahDana,hargaBeli, hargaJual float64) {
-// IS. Terdefinisi suatu array AllInvestasi yang berukuran maksimum NMAX dan telah terisi sebanyak idxInvestasi elemen.
-//      Diberikan input namaAset, jenisAset, nilaiAset, dan danaInvestasi yang akan dimasukkan ke dalam array.
-// FS. Menambahkan data aset investasi ke dalam array AllInvestasi apabila belum penuh (idxInvestasi < NMAX),
-//      atau menampilkan pesan "Data Investasi Sudah Penuh" apabila array telah mencapai kapasitas maksimum.
-	
+func CreateDataInvestasi(namaAset, jenisAset string, nilaiAset, jumlahDana, hargaBeli, hargaJual float64) {
+	// IS. Terdefinisi suatu array AllInvestasi yang berukuran maksimum NMAX dan telah terisi sebanyak idxInvestasi elemen.
+	//      Diberikan input namaAset, jenisAset, nilaiAset, dan danaInvestasi yang akan dimasukkan ke dalam array.
+	// FS. Menambahkan data aset investasi ke dalam array AllInvestasi apabila belum penuh (idxInvestasi < NMAX),
+	//      atau menampilkan pesan "Data Investasi Sudah Penuh" apabila array telah mencapai kapasitas maksimum.
+
 	dataInvestasi := AsetInvetasi{
 		NamaAset:            namaAset,
 		JenisAset:           jenisAset,
@@ -471,7 +466,7 @@ func CreateDataInvestasi(namaAset, jenisAset string, nilaiAset, jumlahDana,harga
 		fmt.Printf("Harga Jual         : %.2f\n", dataInvestasi.HargaJual)
 		fmt.Println("---------------------------------------------------------")
 		idxInvestasi++
-	}else {
+	} else {
 		fmt.Println("\n=========================================================")
 		fmt.Println("    Gagal! Data Investasi Sudah Penuh       ")
 		fmt.Println("=========================================================")
@@ -573,7 +568,7 @@ func HapusDataInvestasi(namaAset string) {
 	}
 }
 
-// sequential search 
+// sequential search
 func FindDataByName(nameAset string) int {
 	// {diberikan array AllInvestasi yang berisi idxInvestasi data aset dan sebuah nama aset,
 	//  untuk mengembalikan indeks data apabila nama aset ditemukan pada array,
@@ -590,11 +585,12 @@ func FindDataByName(nameAset string) int {
 			fmt.Printf("Harga Beli    : %.2f\n", AllInvestasi[i].HargaBeli)
 			fmt.Printf("Harga Jual    : %.2f\n", AllInvestasi[i].HargaJual)
 			fmt.Println("===========================\n")
-		return i
+			return i
 		}
 	}
 	return -1
 }
+
 // sequential search
 func FindDataByJenis(jenisAset string) int {
 	// {diberikan array AllInvestasi yang berisi idxInvestasi data aset dan sebuah jenis aset,
@@ -612,11 +608,12 @@ func FindDataByJenis(jenisAset string) int {
 			fmt.Printf("Harga Beli    : %.2f\n", AllInvestasi[i].HargaBeli)
 			fmt.Printf("Harga Jual    : %.2f\n", AllInvestasi[i].HargaJual)
 			fmt.Println("===========================\n")
-		return i	
+			return i
 		}
 	}
 	return -1
 }
+
 // binary search
 func FindByJumlahDana(jumlahDana float64) int {
 	n := idxInvestasi
@@ -650,9 +647,8 @@ func FindByJumlahDana(jumlahDana float64) int {
 	return -1
 }
 
-
-func SelectionSortAscendingNamaAset(TAset *DataInvestasi){
-	var i,idx,pass int
+func SelectionSortAscendingNamaAset(TAset *DataInvestasi) {
+	var i, idx, pass int
 	pass = 1
 	for pass < idxInvestasi {
 		idx = pass - 1
@@ -662,15 +658,15 @@ func SelectionSortAscendingNamaAset(TAset *DataInvestasi){
 				idx = i
 			}
 			i++
-		}	
-		temp := TAset[pass - 1]
-		TAset[pass - 1] = TAset[idx]
+		}
+		temp := TAset[pass-1]
+		TAset[pass-1] = TAset[idx]
 		TAset[idx] = temp
 		pass++
 	}
 }
-func SelectionSortDescendingNamaAset(TAset *DataInvestasi){
-	var i,idx,pass int
+func SelectionSortDescendingNamaAset(TAset *DataInvestasi) {
+	var i, idx, pass int
 	pass = 1
 	for pass < idxInvestasi {
 		idx = pass - 1
@@ -680,16 +676,16 @@ func SelectionSortDescendingNamaAset(TAset *DataInvestasi){
 				idx = i
 			}
 			i++
-		}	
-		temp := TAset[pass - 1]
-		TAset[pass - 1] = TAset[idx]
+		}
+		temp := TAset[pass-1]
+		TAset[pass-1] = TAset[idx]
 		TAset[idx] = temp
 		pass++
 	}
 }
 
-func SelectionSortAscendingJenisAset(TAset *DataInvestasi){
-	var i,idx,pass int
+func SelectionSortAscendingJenisAset(TAset *DataInvestasi) {
+	var i, idx, pass int
 	pass = 1
 	for pass < idxInvestasi {
 		idx = pass - 1
@@ -699,16 +695,16 @@ func SelectionSortAscendingJenisAset(TAset *DataInvestasi){
 				idx = i
 			}
 			i++
-		}	
-		temp := TAset[pass - 1]
-		TAset[pass - 1] = TAset[idx]
+		}
+		temp := TAset[pass-1]
+		TAset[pass-1] = TAset[idx]
 		TAset[idx] = temp
 		pass++
 	}
 }
 
-func SelectionSortDescendingJenisAset(TAset *DataInvestasi){
-	var i,idx,pass int
+func SelectionSortDescendingJenisAset(TAset *DataInvestasi) {
+	var i, idx, pass int
 	pass = 1
 	for pass < idxInvestasi {
 		idx = pass - 1
@@ -718,46 +714,45 @@ func SelectionSortDescendingJenisAset(TAset *DataInvestasi){
 				idx = i
 			}
 			i++
-		}	
-		temp := TAset[pass - 1]
-		TAset[pass - 1] = TAset[idx]
+		}
+		temp := TAset[pass-1]
+		TAset[pass-1] = TAset[idx]
 		TAset[idx] = temp
 		pass++
 	}
 }
 func InsertionSortAscendingJumlahDana(TAset *DataInvestasi) {
-	
 
-	 for i := 1; i < idxInvestasi; i++ {
-        key := TAset[i]
-        j := i - 1
-        
-        // Pindahkan elemen yang lebih besar dari key
-        for j >= 0 && TAset[j].JumlahDanaInvestasi > key.JumlahDanaInvestasi {
-            TAset[j+1] = TAset[j]
-            j--
-        }
-        TAset[j+1] = key
-    }
+	for i := 1; i < idxInvestasi; i++ {
+		key := TAset[i]
+		j := i - 1
+
+		// Pindahkan elemen yang lebih besar dari key
+		for j >= 0 && TAset[j].JumlahDanaInvestasi > key.JumlahDanaInvestasi {
+			TAset[j+1] = TAset[j]
+			j--
+		}
+		TAset[j+1] = key
+	}
 }
 func InsertionSortDescendingJumlahDana(TAset *DataInvestasi) {
-	
-	 for i := 1; i < idxInvestasi; i++ {
-        key := TAset[i]
-        j := i - 1
-        
-        // Pindahkan elemen yang lebih besar dari key
-        for j >= 0 && TAset[j].JumlahDanaInvestasi < key.JumlahDanaInvestasi {
-            TAset[j+1] = TAset[j]
-            j--
-        }
-        TAset[j+1] = key
-    }
+
+	for i := 1; i < idxInvestasi; i++ {
+		key := TAset[i]
+		j := i - 1
+
+		// Pindahkan elemen yang lebih besar dari key
+		for j >= 0 && TAset[j].JumlahDanaInvestasi < key.JumlahDanaInvestasi {
+			TAset[j+1] = TAset[j]
+			j--
+		}
+		TAset[j+1] = key
+	}
 }
 
-func HitungKeuntungan(Aset AsetInvetasi) float64{
+func HitungKeuntungan(Aset AsetInvetasi) float64 {
 	jumlahUnit := Aset.JumlahDanaInvestasi / Aset.HargaBeli
-	keuntungan := (Aset.HargaJual-Aset.HargaBeli)*jumlahUnit
+	keuntungan := (Aset.HargaJual - Aset.HargaBeli) * jumlahUnit
 	return keuntungan
 }
 
@@ -770,72 +765,72 @@ func HitungPersentaseKeuntungan(Aset AsetInvetasi) float64 {
 	return (keuntungan / Aset.JumlahDanaInvestasi) * 100
 }
 
-func InitPersentaseDanKeuntungan(TAset *DataInvestasi){
+func InitPersentaseDanKeuntungan(TAset *DataInvestasi) {
 	for i := 0; i < idxInvestasi; i++ {
 		TAset[i].Keuntungan = HitungKeuntungan(TAset[i])
 		TAset[i].PersentaseKeuntungan = HitungPersentaseKeuntungan(TAset[i])
 	}
 }
 
-func InsertionSortAscendingKeuntungan(TAset *DataInvestasi){
+func InsertionSortAscendingKeuntungan(TAset *DataInvestasi) {
 	for i := 1; i < idxInvestasi; i++ {
-        key := TAset[i]
-        j := i - 1
-        
-        // Pindahkan elemen yang lebih besar dari key
-        for j >= 0 && TAset[j].Keuntungan > key.Keuntungan {
-            TAset[j+1] = TAset[j]
-            j--
-        }
-        TAset[j+1] = key
-    }
+		key := TAset[i]
+		j := i - 1
+
+		// Pindahkan elemen yang lebih besar dari key
+		for j >= 0 && TAset[j].Keuntungan > key.Keuntungan {
+			TAset[j+1] = TAset[j]
+			j--
+		}
+		TAset[j+1] = key
+	}
 }
 
-func InsertionSortDescendingKeuntungan(TAset *DataInvestasi){
+func InsertionSortDescendingKeuntungan(TAset *DataInvestasi) {
 	for i := 1; i < idxInvestasi; i++ {
-        key := TAset[i]
-        j := i - 1
-        
-        // Pindahkan elemen yang lebih besar dari key
-        for j >= 0 && TAset[j].Keuntungan < key.Keuntungan {
-            TAset[j+1] = TAset[j]
-            j--
-        }
-        TAset[j+1] = key
-    }
+		key := TAset[i]
+		j := i - 1
+
+		// Pindahkan elemen yang lebih besar dari key
+		for j >= 0 && TAset[j].Keuntungan < key.Keuntungan {
+			TAset[j+1] = TAset[j]
+			j--
+		}
+		TAset[j+1] = key
+	}
 }
 
-func InsertionSortAscendingPersentaseKeuntungan(TAset *DataInvestasi){
+func InsertionSortAscendingPersentaseKeuntungan(TAset *DataInvestasi) {
 	for i := 1; i < idxInvestasi; i++ {
-        key := TAset[i]
-        j := i - 1
-        
-        // Pindahkan elemen yang lebih besar dari key
-        for j >= 0 && TAset[j].PersentaseKeuntungan > key.PersentaseKeuntungan {
-            TAset[j+1] = TAset[j]
-            j--
-        }
-        TAset[j+1] = key
-    }
+		key := TAset[i]
+		j := i - 1
+
+		// Pindahkan elemen yang lebih besar dari key
+		for j >= 0 && TAset[j].PersentaseKeuntungan > key.PersentaseKeuntungan {
+			TAset[j+1] = TAset[j]
+			j--
+		}
+		TAset[j+1] = key
+	}
 }
 
-func InsertionSortDescendingPersentaseKeuntungan(TAset *DataInvestasi){
+func InsertionSortDescendingPersentaseKeuntungan(TAset *DataInvestasi) {
 	for i := 1; i < idxInvestasi; i++ {
-        key := TAset[i]
-        j := i - 1
-        
-        // Pindahkan elemen yang lebih besar dari key
-        for j >= 0 && TAset[j].PersentaseKeuntungan < key.PersentaseKeuntungan {
-            TAset[j+1] = TAset[j]
-            j--
-        }
-        TAset[j+1] = key
-    }
+		key := TAset[i]
+		j := i - 1
+
+		// Pindahkan elemen yang lebih besar dari key
+		for j >= 0 && TAset[j].PersentaseKeuntungan < key.PersentaseKeuntungan {
+			TAset[j+1] = TAset[j]
+			j--
+		}
+		TAset[j+1] = key
+	}
 }
 
 func CetakDataInvestai(TAset *DataInvestasi) {
 	fmt.Println("=================================================================================================================================")
-	fmt.Printf("| %-3s | %-30s | %-10s | %-15s | %-12s | %-12s | %-12s | %-10s |\n", 
+	fmt.Printf("| %-3s | %-30s | %-10s | %-15s | %-12s | %-12s | %-12s | %-10s |\n",
 		"No", "Nama Aset", "Jenis", "Jumlah Dana", "Harga Beli", "Harga Jual", "Keuntungan", "% Untung")
 	fmt.Println("=================================================================================================================================")
 
@@ -855,11 +850,9 @@ func CetakDataInvestai(TAset *DataInvestasi) {
 	fmt.Println("=================================================================================================================================")
 }
 
-func LaporanDataInvesatasi(){
-	
+func LaporanDataInvesatasi() {
+
 }
-
-
 
 // UI FUNCTIONS
 func WelcomeLogin() {
@@ -892,9 +885,9 @@ func DashboardOption() {
 	fmt.Print("Masukkan Pilihan: ")
 }
 
-func InputInvestasi() (string, string, float64, float64,float64,float64) {
+func InputInvestasi() (string, string, float64, float64, float64, float64) {
 	var namaAset, jenisAset string
-	var jumlahDana, nilaiAset,hargaBeli,hargaJual float64
+	var jumlahDana, nilaiAset, hargaBeli, hargaJual float64
 
 	fmt.Println("=========================================================")
 	fmt.Println("               Tambah Data Investasi                     ")
@@ -913,8 +906,14 @@ func InputInvestasi() (string, string, float64, float64,float64,float64) {
 	fmt.Print("Masukkan Harga Jual: ")
 	fmt.Scan(&hargaJual)
 	fmt.Println("=========================================================")
-	return namaAset, jenisAset, jumlahDana, nilaiAset,hargaBeli,hargaJual
+	return namaAset, jenisAset, jumlahDana, nilaiAset, hargaBeli, hargaJual
 }
 
-
-
+func Goodbye() {
+	fmt.Println("=========================================================")
+	fmt.Println("Terima kasih telah menggunakan")
+	fmt.Println("Aplikasi Manajemen Investasi Sederhana")
+	fmt.Println("Semoga portofolio investasimu terus berkembang!")
+	fmt.Println("Sampai jumpa ")
+	fmt.Println("=========================================================")
+}
