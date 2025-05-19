@@ -218,10 +218,9 @@ func main() {
 			case 6:
 				// TampilkanLaporanInvestasi()
 			case 7:
-				Goodbye()
 				inDashboard = false
 			case 8:
-				fmt.Println("Terima kasih telah menggunakan aplikasi.")
+				Goodbye()
 				aplikasiAktif = false
 				inDashboard = false
 			default:
