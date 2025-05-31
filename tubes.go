@@ -603,6 +603,9 @@ func FindDataByJenis(TInvestasi tabInvestasi, n int, jenisAset string) int {
 
 // binary search
 func FindByJumlahDana(TInvestasi tabInvestasi, n int, jumlahDana float64) int {
+	// {diberikan array TInvestasi yang berisi n data aset dan jumlah dana tertentu,
+	//  untuk mengembalikan indeks data apabila jumlah dana ditemukan pada array,
+	//  serta menampilkan detail data aset tersebut; jika tidak ditemukan, mengembalikan -1}
 	left := 0
 	right := n - 1
 	for left <= right {
@@ -633,6 +636,8 @@ func FindByJumlahDana(TInvestasi tabInvestasi, n int, jumlahDana float64) int {
 }
 
 func SelectionSortAscendingNamaAset(TInvestasi *tabInvestasi, n int) {
+	// IS: Array TInvestasi terisi n data (belum terurut)
+	// FS: Array TInvestasi terurut ascending berdasarkan NamaAset
 	var i, idx, pass int
 	pass = 1
 	for pass < n {
@@ -651,6 +656,8 @@ func SelectionSortAscendingNamaAset(TInvestasi *tabInvestasi, n int) {
 	}
 }
 func SelectionSortDescendingNamaAset(TInvestasi *tabInvestasi, n int) {
+	// IS: Terdefinisi array TInvestasi yang berisi n data aset
+	// FS: Array TInvestasi terurut descending berdasarkan nama aset menggunakan selection sort
 	var i, idx, pass int
 	pass = 1
 	for pass < n {
@@ -669,6 +676,8 @@ func SelectionSortDescendingNamaAset(TInvestasi *tabInvestasi, n int) {
 	}
 }
 func SelectionSortAscendingJenisAset(TInvestasi *tabInvestasi, n int) {
+	// IS: Array TInvestasi terisi n data (belum terurut)
+	// FS: Array TInvestasi terurut ascending berdasarkan JenisAset
 	var i, idx, pass int
 	pass = 1
 	for pass < n {
@@ -687,6 +696,8 @@ func SelectionSortAscendingJenisAset(TInvestasi *tabInvestasi, n int) {
 	}
 }
 func SelectionSortDescendingJenisAset(TInvestasi *tabInvestasi, n int) {
+	// IS: Array TInvestasi terisi n data (belum terurut)
+	// FS: Array TInvestasi terurut descending berdasarkan JenisAset
 	var i, idx, pass int
 	pass = 1
 	for pass < n {
@@ -705,6 +716,8 @@ func SelectionSortDescendingJenisAset(TInvestasi *tabInvestasi, n int) {
 	}
 }
 func InsertionSortAscendingJumlahDana(TInvestasi *tabInvestasi, n int) {
+	// IS: Array TInvestasi terisi n data (belum terurut)
+	// FS: Array TInvestasi terurut ascending berdasarkan JumlahDanaInvestasi
 	var pass, i int
 	var temp AsetInvestasi
 	pass = 1
@@ -722,6 +735,8 @@ func InsertionSortAscendingJumlahDana(TInvestasi *tabInvestasi, n int) {
 	}
 }
 func InsertionSortDescendingJumlahDana(TInvestasi *tabInvestasi, n int) {
+	// IS: Array TInvestasi terisi n data (belum terurut)
+	// FS: Array TInvestasi terurut descending berdasarkan JumlahDanaInvestasi  
 	var pass, i int
 	var temp AsetInvestasi
 	pass = 1
@@ -739,11 +754,15 @@ func InsertionSortDescendingJumlahDana(TInvestasi *tabInvestasi, n int) {
 	}
 }
 func HitungKeuntungan(Aset AsetInvestasi) float64 {
+	// {diberikan data AsetInvestasi lengkap dengan harga beli dan jual,
+	//  untuk mengembalikan nilai keuntungan dalam rupiah}
 	jumlahUnit := Aset.JumlahDanaInvestasi / Aset.HargaBeli
 	keuntungan := (Aset.HargaJual - Aset.HargaBeli) * jumlahUnit
 	return keuntungan
 }
 func HitungPersentaseKeuntungan(Aset AsetInvestasi) float64 {
+	// {diberikan data AsetInvestasi lengkap dengan harga beli dan jual,
+	//  untuk mengembalikan persentase keuntungan (0-100%)}
 	if Aset.HargaBeli == 0 {
 		return 0 // menghindari pembagian dengan nol
 	}
@@ -752,12 +771,16 @@ func HitungPersentaseKeuntungan(Aset AsetInvestasi) float64 {
 	return (keuntungan / Aset.JumlahDanaInvestasi) * 100
 }
 func InitPersentaseDanKeuntungan(TInvestasi *tabInvestasi, n int) {
+	// IS: Array TInvestasi terisi n data dengan field Keuntungan dan PersentaseKeuntungan kosong
+	// FS: Array TInvestasi dengan field Keuntungan dan PersentaseKeuntungan terisi
 	for i := 0; i < n; i++ {
 		TInvestasi[i].Keuntungan = HitungKeuntungan(TInvestasi[i])
 		TInvestasi[i].PersentaseKeuntungan = HitungPersentaseKeuntungan(TInvestasi[i])
 	}
 }
 func InsertionSortAscendingKeuntungan(TInvestasi *tabInvestasi, n int) {
+	// IS: Array TInvestasi terisi n data (belum terurut)
+	// FS: Array TInvestasi terurut ascending berdasarkan Keuntungan
 	var pass, i int
 	var temp AsetInvestasi
 	pass = 1
@@ -775,6 +798,8 @@ func InsertionSortAscendingKeuntungan(TInvestasi *tabInvestasi, n int) {
 	}
 }
 func InsertionSortDescendingKeuntungan(TInvestasi *tabInvestasi, n int) {
+	// IS: Array TInvestasi terisi n data (belum terurut)
+	// FS: Array TInvestasi terurut descending berdasarkan Keuntungan
 	var pass, i int
 	var temp AsetInvestasi
 	pass = 1
@@ -792,6 +817,8 @@ func InsertionSortDescendingKeuntungan(TInvestasi *tabInvestasi, n int) {
 	}
 }
 func InsertionSortAscendingPersentaseKeuntungan(TInvestasi *tabInvestasi, n int) {
+	// IS: Array TInvestasi terisi n data (belum terurut)
+	// FS: Array TInvestasi terurut ascending berdasarkan PersentaseKeuntungan  
 	var pass, i int
 	var temp AsetInvestasi
 	pass = 1
@@ -809,6 +836,8 @@ func InsertionSortAscendingPersentaseKeuntungan(TInvestasi *tabInvestasi, n int)
 	}
 }
 func InsertionSortDescendingPersentaseKeuntungan(TInvestasi *tabInvestasi, n int) {
+	// IS: Array TInvestasi terisi n data (belum terurut)
+	// FS: Array TInvestasi terurut descending berdasarkan PersentaseKeuntungan
 	var pass, i int
 	var temp AsetInvestasi
 	pass = 1
@@ -827,6 +856,8 @@ func InsertionSortDescendingPersentaseKeuntungan(TInvestasi *tabInvestasi, n int
 }
 
 func CetakDataInvestasi(TInvestasi *tabInvestasi, n int) {
+	// IS: Array TInvestasi terisi n data
+	// FS: Menampilkan seluruh data dalam format tabel ke output
 	fmt.Println("=================================================================================================================================")
 	fmt.Printf("| %-3s | %-30s | %-10s | %-15s | %-12s | %-12s | %-12s | %-10s |\n",
 		"No", "Nama Aset", "Jenis", "Jumlah Dana", "Harga Beli", "Harga Jual", "Keuntungan", "% Untung")
